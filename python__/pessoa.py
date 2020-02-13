@@ -1,4 +1,7 @@
-pessoa = {'nome':''}
+pessoa = {'nome':'',
+          'idade':'',
+          'peso':'',
+          'altura':''}
 
 def new_pessoa():
     pessoa['nome'] = input('Digite o nome da pessoa: ')
@@ -33,11 +36,12 @@ def infitos_args(*args):
         print(i, ': ')
 
 def mostrar_pessoa(pessoa):
-    #for i in pessoa:
-    #print(f'{i} = {pessoa[i]}')
-    print(pessoa)
-
-me = ['NOVA PESSOA','ENVELHECER','ENGORDAR','EMAGRECER','CRESCER','MOSTRAR PESSOA',]
+    for i in pessoa:
+        for c,v in i.items():
+            print(f'{c} = {v}')
+        print()
+        
+    #print(pessoa)
 
 def menu(tam=20):
     print('='*tam)
@@ -49,31 +53,36 @@ def menu(tam=20):
     print('='*tam)
     
     
-
-pessoas = []
-op = 1
-while 1 <= op <= 6:
-    menu(30)
-    op = int(input(' > '))
+if __name__ == '__main__' :
     
-    if op == 1:
-        x = new_pessoa()
-       
-        print(('\n DESEJA SALVAR ? \n S/N :')
-        xop = input(' > ')
-        if xop.upper() == 'S':
-            pessoas.append(x)
-        else:
-            pass
+    me = ['NOVA PESSOA','ENVELHECER','ENGORDAR','EMAGRECER','CRESCER','MOSTRAR PESSOA',]
+    pessoas = []
+    op = 1
+    while 1 <= op <= 6:
+        menu(30)
+        op = int(input(' > '))
         
-    if op == 6:
-        mostrar_pessoa(pessoas)
+        if op == 1:
+            x = new_pessoa()
+           
+            print(('\n DESEJA SALVAR ? \n S/N :'))
+            xop = input(' > ')
+                  
+            if xop.upper() == 'S':
+                pessoas.append(x)
+                print()
+                
+            else:
+                pass
+            
+        if op == 6:
+            mostrar_pessoa(pessoas)
         
     
 
 
 
-#if __name__ == '__main__' :
+
     
     
 
