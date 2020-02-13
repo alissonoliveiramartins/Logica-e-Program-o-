@@ -1,7 +1,5 @@
-pessoa = {'nome':'',
-          'idade':'',
-          'peso':'',
-          'altura':''}
+pessoa = {'nome':''}
+
 def new_pessoa():
     pessoa['nome'] = input('Digite o nome da pessoa: ')
     pessoa['idade'] = int(input('Digite  a idade: '))
@@ -35,10 +33,11 @@ def infitos_args(*args):
         print(i, ': ')
 
 def mostrar_pessoa(pessoa):
-    for i in pessoa:
-        print(f'{i} = {pessoa[i]}')
+    #for i in pessoa:
+    #print(f'{i} = {pessoa[i]}')
+    print(pessoa)
 
-me = ['NOVA PESSOA','ENVELHECER','ENGORDAR','EMAGRECER','CRESCER','MOSTRAR PESSOA']
+me = ['NOVA PESSOA','ENVELHECER','ENGORDAR','EMAGRECER','CRESCER','MOSTRAR PESSOA',]
 
 def menu(tam=20):
     print('='*tam)
@@ -48,8 +47,32 @@ def menu(tam=20):
         print('{} => {}'.format(i+1, me[i]))
         
     print('='*tam)
-menu(30)
+    
+    
+
+pessoas = []
+op = 1
+while 1 <= op <= 6:
+    menu(30)
+    op = int(input(' > '))
+    
+    if op == 1:
+        x = new_pessoa()
+       
+        print(('\n DESEJA SALVAR ? \n S/N :')
+        xop = input(' > ')
+        if xop.upper() == 'S':
+            pessoas.append(x)
+        else:
+            pass
         
+    if op == 6:
+        mostrar_pessoa(pessoas)
+        
+    
+
+
+
 #if __name__ == '__main__' :
     
     
