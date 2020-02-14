@@ -1,13 +1,18 @@
-pessoa = {'nome':'',
+"""pessoa = {'nome':'',
           'idade':'',
           'peso':'',
-          'altura':''}
+          'altura':''}"""
 
-def new_pessoa():
+def new_pessoa(identificador):
+    print('='*30)
+    print('NOVA PESSOA'.center(30,'_'))
+    pessoa = {}
+    pessoa['id'] = identificador
     pessoa['nome'] = input('Digite o nome da pessoa: ')
     pessoa['idade'] = int(input('Digite  a idade: '))
     pessoa['peso'] = float(input('Digite o peso: '))
     pessoa['altura'] = float(input('Digite a altura: '))
+    print('='*30)
     return pessoa
 
 def envelhecer(pessoa,anos=1):
@@ -36,14 +41,61 @@ def infitos_args(*args):
         print(i, ': ')
 
 def mostrar_pessoa(pessoa):
+    print('='*30)
+    print('PESSOAS:'.center(30,'_'))
+    print()
     for i in pessoa:
         for c,v in i.items():
             print(f'{c} = {v}')
-        print()
-        
+    print('='*30)    
     #print(pessoa)
 
-def menu(tam=20):
+def buscar():
+    n = 0
+    for dic in pessoas:
+        print('BUSCAR POR: '.center(30, '_'))
+        for chave in dic.keys():
+            n += 1
+            print(f'{n} => {chave}')
+        break
+            
+    num = int(input('> '))
+    if num == 1:
+        chave = 'id'
+    elif num == 2:
+        chave = 'nome'
+    elif num == 3:
+        chave = 'idade'
+    elif num == 4:
+        chave = 'peso'
+    elif num == 5:
+        chave = 'altura'
+    else:
+      return 0       
+    valor = input(f'Digite o  {chave}\n> ')
+
+    for dic in pessoas:
+        if str(dic[chave]).upper().startswith(str(valor).upper()):
+            print(dic)    
+
+def deletar():
+  ide = int(input('DIGITE O ID PARA PROSEGUIR\n> '))
+
+  for dic in pessoas:
+    if str(dic['id']).upper().startswith(str(ide).upper()):
+            
+      for c,v in dic.items():
+        print(f'{c} = {v}')
+      print()
+      print('DESEJA DELETAR ?'.center(30))
+      print('sim(S) | não(N)'.center(30))
+      deleta = input('> ')
+      if deleta.upper() == 'S':
+        pessoas.remove(dic)
+      else:
+        pass  
+
+def menu(tam=30):
     print('='*tam)
     print('Menu'.upper().center(tam, '_'))
 
@@ -51,43 +103,35 @@ def menu(tam=20):
         print('{} => {}'.format(i+1, me[i]))
         
     print('='*tam)
-    
-    
+       
 if __name__ == '__main__' :
     
-    me = ['NOVA PESSOA','ENVELHECER','ENGORDAR','EMAGRECER','CRESCER','MOSTRAR PESSOA',]
+    me = ['NOVA PESSOA','ENVELHECER','ENGORDAR','EMAGRECER','CRESCER','MOSTRAR PESSOAS','BUSCAR','DELETAR']
     pessoas = []
     op = 1
-    while 1 <= op <= 6:
-        menu(30)
+    identificador = 0
+    while 1 <= op <= len(me):
+        menu()
         op = int(input(' > '))
-        
         if op == 1:
-            x = new_pessoa()
-           
-            print(('\n DESEJA SALVAR ? \n S/N :'))
+            identificador += 1 #O identificador é o numero do ID da pessoa, A cada nova pessoa criada é icrementado 1 no id
+            x = new_pessoa(identificador)
+            print('DESEJA SALVAR ?'.center(30,'_'))
+            print('sim(S) | não(N)'.center(30))
             xop = input(' > ')
                   
             if xop.upper() == 'S':
                 pessoas.append(x)
-                print()
-                
+                print()   
             else:
                 pass
             
         if op == 6:
             mostrar_pessoa(pessoas)
-        
-    
-
-
-
-
-    
-    
-
-    
-#  Argumentos INFINITOS  
-#infitos_args()
-#infitos_args(1)
-#infitos_args(1, 2, 3, 4, 5, 6, 7, 7, 8, 9, 0, 1, 1, 312, 3123,1, 3,1, 2
+            ficar = 1
+            while ficar == 1:
+              ficar=int(input('0 => MENU PRINCIPAL\n'))
+        elif op == 7:
+            buscar()
+        elif op == 8:
+            deletar()
